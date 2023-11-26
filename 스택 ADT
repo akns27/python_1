@@ -1,0 +1,63 @@
+class stack:
+  def __init__(self, stack_size=5):
+    self.stack_size = stack_size
+    self.list=[None]*stack_size
+    self.top = -1
+#class내의 요소에 접근하려면 self를 꼭 적어줘야함
+  def isEmpty(self):#1개
+    return self.top == -1
+  #True, False로 결과가 나옴
+  def isFull(self):#2개
+    return self.top == self.stack_size-1
+
+
+  def push(self,e):#매개변수 e, push(매개변수)로 넣기, 3개
+    #정의할때만 self적어주면 됨
+    if self.isFull():#호출할때는 self없는 셈
+      print("스택이 가득찼습니다.")
+    else:
+      self.top = self.top+1
+      self.list[self.top] = e
+
+  def pop(self):#4개
+    if self.isEmpty():
+      print("스택이 비어있습니다.")
+    else:
+      self.top = self.top-1
+      return self.list[self.top+1]#top-1해서 빼준 거 다시 반환
+
+  def peek(self):#5개
+    if self.isEmpty():
+      print("스택이 비어있습니다.")
+    else:
+      return self.list[self.top]
+    
+  def printAll(self):#6개
+    if self.isEmpty():
+      print("스택이 비어있습니다.")
+    else:
+      for i in range(self.top, -1, -1):#top ~ -1까지, -1씩
+        print(self.list[i])
+
+  def clear(self):#7개, 전부 없애기
+    self.top = -1#top도 초기화
+    self.list = [None]*self.stack_size#리스트에 none을 넣으며 초기화
+
+  def size(self):#8개, 스택 안 요소의 개수 반환
+    return self.top + 1#top에 0부터 시작하니 +1을 하면 현재 요소의 개수가 나옴
+  
+classInstance = stack()
+
+classInstance.push(1)
+classInstance.push(2)
+classInstance.push(3)#push(매개변수)
+classInstance.push(4)#push(매개변수)
+classInstance.push(5)#push(매개변수)
+print(classInstance.pop())
+print(classInstance.peek())
+print(classInstance.pop())
+print(classInstance.printAll())#return이 없으니 none반환
+print(classInstance.size())
+print(classInstance.clear())#return이 없으니 none반환
+print(classInstance.size())
+
